@@ -1,0 +1,36 @@
+.col {
+  border: 1px solid #ccc;
+  background: #fff;
+  overflow: hidden;
+  padding: 10px;
+  color: #000;
+  font-size:17px;
+  margin: 10px 8px 8px 8px;
+}
+#location-regi #name{
+  margin:20px 0px 10px 0px;
+}
+/*
+.ios-bg{
+  background-color:rgba(24,103,194,0.81);
+}
+*/
+#location-list .list__item{
+  height: 20px;
+}
+ul{
+  list-style-type: none;
+}
+li{
+  margin:3px 0px;
+}
+
+.list__item__title{
+ padding-right:14px;
+ font-size:16px;
+ //font-weight: bold;
+}
+.list__item__subtitle{
+ padding-right:14px;
+ font-size:10px; 
+}

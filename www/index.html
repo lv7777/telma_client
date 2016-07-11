@@ -1,0 +1,385 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    
+    <script src="components/loader.js"></script>
+    <script src="lib/jquery/jquery-2.1.4.min.js"></script>
+    <script src="lib/onsenui/js/onsenui.js"></script>
+    <script src="lib/jquery/jquery.switch.js"></script>
+    <script src="lib/bootstrap/bootstrap.js"></script>
+    <script src="js/bbs.js"></script>
+    <script src="js/rent.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/app.js"></script>
+		<!-- Tuyen san --
+  	<script type="text/javascript" src="lib/onsenui/js/angular.js"></script>
+  	<script src="lib/onsenui/js/angular-onsenui.js"></script>
+  	<script src="lib/socket.io-client/socket.io.js"></script>
+		<!--------------->
+
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+    <link rel="stylesheet" href="lib/jquery/jquery.switch.css">
+    <link rel="stylesheet" href="lib/jquery/jquery.switch.theme.css">
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+		<!-- Tuyen san -->
+	  <link rel="stylesheet" href="css/font-awesome.css">
+	  <link rel="stylesheet" href="css/style-chat.css">
+	  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+		<!--------------->
+
+    <script>
+    //ons.bootstrap()
+    ons.ready(function () {/*
+      $("#myNavigator").on('prepush', function(event) {
+        console.log("aaa");
+        console.log($("#bbs-detail-var").html())
+    });*/
+      $(".btn-signin").html("aaaa");
+  console.log($("#bbs-detail-var").html());
+      console.log("Onsen UI is ready!");
+      
+    });
+    /*
+     window.fn.load = function(page) {
+     var content = document.getElementById('content');
+     var menu = document.getElementById('menu');
+     content.load(page)
+     .then(menu.close.bind(menu));
+     };
+     */
+    </script>
+  </head>
+  <body>
+  <ons-navigator id="myNavigator" page="page/login/login.html">
+  </ons-navigator>
+  
+  <ons-template id="splitter.html">
+    <ons-splitter id="mySplitter">
+      <ons-splitter-side id="menu" side="left" collapse swipeable>
+        <ons-page>
+          <ons-list>
+            <ons-list-item onclick="openSlide('page/home.html')" tappable>
+              Home
+            </ons-list-item>
+            <ons-list-item onclick="openSlide('page/bbs/bbs-write.html')" tappable>
+              Settings
+            </ons-list-item>
+            <ons-list-item onclick="openSlide('chat.html')" tappable>
+              Chat
+            </ons-list-item>
+          </ons-list>
+        </ons-page>
+      </ons-splitter-side>
+      <ons-splitter-content id="content" page="page/home.html"></ons-splitter-content>
+    </ons-splitter>
+  </ons-template>
+  
+  <ons-template id="rent.html">
+    <ons-page>
+      <ons-list id="rent-lists">
+        <ons-list-item class="rent-list" onclick="rentContent()">
+          <div class="left"><ons-icon class="list__item__thumbnail" icon="ion-android-bicycle" size="2x"></ons-icon></div>
+          <div class="center"><span class="list__item__title">空気入れ貸してください～～</span>
+          <span class="list__item__subtitle">引っ越したばっかりで空気入れが無いので、誰か貸してください</span></div>
+        </ons-list-item>
+        <ons-list-item>
+          <div class="left"><ons-icon class="list__item__thumbnail" icon="ion-person" size="2x"></ons-icon></div>
+          <div class="center"><span class="list__item__title">脚立求む！！！</span>
+          <span class="list__item__subtitle">電球を変えたいので、脚立誰かお貸しして頂けませんか？</span></div>
+        </ons-list-item>
+        <ons-list-item>
+          <div class="left"><ons-icon class="list__item__thumbnail" icon="ion-battery-charging" size="2x"></ons-icon></div>
+          <div class="center"><span class="list__item__title">充電器借してください！</span>
+          <span class="list__item__subtitle">場所：名古屋工学院専門学校　iPhone用のおねがいします！</span></div>
+        </ons-list-item>
+      </ons-list>
+      <ons-fab position="bottom right" onclick="popOpen('page/rent/rent-write.html')">
+        <ons-icon icon="md-edit"></ons-icon>
+      </ons-fab>
+    </ons-page>
+  </ons-template>
+  
+  <ons-template id="bbs.html">
+    <ons-page><!--
+      <ons-pull-hook threshold-height="220px" height="180px" id="refresh">
+        Pull to refresh
+      </ons-pull-hook>-->
+      <!--
+      <ons-pull-hook id="onRefresh">
+        Pull to refresh
+      </ons-pull-hook>
+      <ons-button align="right" id="btn1" onclick="showPopover(this)">page1</ons-button>
+      <ons-button align="right" id="btn2" onclick="bbsList()">page2</ons-button>
+      <ons-button align="right" id="btn3" onclick="returnLocation()">page3</ons-button>
+      <ons-button align="right" id="btn4" onclick="bbsContent()">page4</ons-button>-->
+      <ons-list id="bbs-lists">
+        <ons-list-item class="bbs-list" onclick="bbsDetail(1)">
+          <span class="keijiban_id" id="0" hidden></span>
+          <div class="left"><ons-icon class="list__item__thumbnail" icon="ion-flag" size="2x"></ons-icon></div>
+          <div class="center"><span class="list__item__title">第70回 名古屋みなと祭 花火大会</span>
+          <span class="list__item__subtitle">名古屋港の夏の恒例行事！名古屋みなと祭のフィナーレ</span></div>
+        </ons-list-item>
+        <ons-list-item class="bbs-list" onclick="bbsDetail(2)">
+          <span class="keijiban_id" id="0" hidden></span>
+          <div class="left"><ons-icon class="list__item__thumbnail" icon="ion-clipboard" size="2x"></ons-icon></div>
+          <div class="center"><span class="list__item__title">鍵の落とし物のお知らせ</span>
+          <span class="list__item__subtitle">自転車の鍵見ませんでした？　場所 熱田区　拾った時間：6月24日 17時頃～</span></div>
+        </ons-list-item>
+        <ons-list-item class="bbs-list" onclick="bbsDetail(3)">
+          <span class="keijiban_id" id="0" hidden></span>
+          <div class="left"><ons-icon class="list__item__thumbnail" icon="ion-person" size="2x"></ons-icon></div>
+          <div class="center"><span class="list__item__title">不審者情報</span>
+          <span class="list__item__subtitle">時間：6月20日 16時頃　場所：熱田区伝馬町　特徴：黒帽子に赤黒チェックの服</span></div>
+        </ons-list-item>
+        <ons-list-item class="bbs-list" onclick="bbsDetail(4)">
+          <span class="keijiban_id" id="0" hidden></span>
+          <div class="left"><ons-icon class="list__item__thumbnail" icon="ion-clipboard" size="2x"></ons-icon></div>
+          <div class="center"><span class="list__item__title">キーホルダー見ませんでしたか？</span>
+          <span class="list__item__subtitle">頭に赤い帽子をかぶったクマのぬいぐるみのキーホルダーをみませんでしたか？</span></div>
+        </ons-list-item>
+        <ons-list-item class="bbs-list" onclick="bbsDetail(5)">
+          <span class="keijiban_id" id="0" hidden></span>
+          <div class="left"><ons-icon class="list__item__thumbnail" icon="ion-ios-body" size="2x"></ons-icon></div>
+          <div class="center"><span class="list__item__title">ラジオ体操の開催のお知らせ</span>
+          <span class="list__item__subtitle">場所：熱田公園　６：３０～　皆さん気持ちよく朝を迎えましょう！</span></div>
+        </ons-list-item>
+      </ons-list>
+    
+      <ons-speed-dial position="bottom right" direction="left">
+        <ons-fab> 
+          <ons-icon icon="md-plus"></ons-icon>
+        </ons-fab>
+        <ons-speed-dial-item class="wirte-ic" onclick="popOpen('page/bbs/bbs-write.html')">
+          <ons-icon icon="ion-edit" ></ons-icon>
+        </ons-speed-dial-item>
+        <ons-speed-dial-item class="book-ic"  onclick="openDialog('location-list')">
+          <ons-icon icon="ion-ios-bookmarks"></ons-icon>
+        </ons-speed-dial-item>
+        <ons-speed-dial-item class="location-ic" onclick="openDialog('location-regi')">
+          <ons-icon icon="ion-android-pin"></ons-icon>
+        </ons-speed-dial-item>
+      </ons-speed-dial>
+    </ons-page>
+  </ons-template>
+  
+<ons-template id="bbs-detail.html" var="bbsDetail">
+<ons-page>
+  <ons-toolbar>
+    <div class="left">
+      <ons-back-button></ons-back-button>
+    </div>
+    <div class="center" id="bbs-detail-var" class="cccc">
+      <!--熱田まつり開催！-->
+    </div>
+    <div class="right">
+      <ons-toolbar-button id="refresh-icon">
+        <ons-icon icon="ion-android-sync" onclick="bbsList()"></ons-icon>
+      </ons-toolbar-button>
+    </div>
+  </ons-toolbar>
+  <div id="bbs-detail" class="col" style="font-size:14px">
+    <h4 id="bbs-detail-title"><!--第70回海の日名古屋みなと祭花火大会--></h4><br>
+    <p id="bbs-detail-content">
+    <!--愛知県名古屋市港区 / 名古屋港ガーデンふ頭一帯<br><br>
+    開催日時  2016年7月18日（月） 19:30～20:20<br>
+    荒天の場合  雨天決行(荒天時は中止)<br>
+    打ち上げ場所	打ち上げ場所を地図で見る<br> 
+    交通 名古屋市営地下鉄名古屋港駅すぐ、名古屋市営地下鉄築地口駅から徒歩約10分、あおなみ線稲永駅から徒歩約30分　※当日は会場周辺で交通規制あり
+    駐車場	× 
+    問い合わせ先	052-654-7894　海の日名古屋みなと祭協賛会事務局(名古屋港管理組総務部総務課広報・にぎわい振興室内
+    HP	公式ホームページほか、関連サイトはこちら
+    有料席	なし</p>-->
+      <!--イベント名  熱田まつり（尚武祭）<br>
+      日程  2016年06月05日
+      時間	10:00～　花火は19:40～20：30頃
+      会場名	熱田神宮とその周辺
+      イベント内容	
+      熱田神宮における最も重要で荘厳な祭。10:00より勅使参向のもと、祭典が執り行われ、境内では終日に亘り武道や芸能が奉納される。夕刻より献灯まきわらが点灯され、神宮公園から花火が約1000発（19：40～20：30頃）も上がる。※花火見物は地下鉄「西高蔵」で。
+      熱田まつり奉納行事表
+      交通規制について
+      料金	無料
+      料金詳細	-
+      お問い合わせ先	-
+      TEL	052-671-4153
+      FAX	-
+      ホームページ	http://www.atsutajingu.or.jp/jingu/
+      アクセス	地下鉄「神宮西」・ＪＲ「熱田」・名鉄「神宮前」
+      -->
+      <section align="right" style="margin: 12px 8px 3px 0px">
+        <ons-button id="bbs-reply"><ons-icon size="15px" icon="ion-reply"></ons-icon><span style="margin-left:10px">記事に返信</span></ons-button>
+      </section>
+    </div>
+    <div id="bbs-cmt-lists">
+      <ons-row id="1" style="margin:3px 7px;" class="row bbs-cmt-list">
+        <div align="top" style="padding:10px 0px 5px 10px;margin:0px;width:50px;height:50px" class="col bbs-cmt-image">
+          <ons-icon icon="ion-person" size="2x"></ons-icon>
+        </div>
+        <div style="margin:0px;padding:8px 10px 8px 10px;font-size:12px" class="col bbs-cmt-cmt">
+          めっちゃいきてぇ～～～<br>
+          楽しみすぎてる！！！！！
+        </div>
+      </ons-row>
+    </div>
+</ons-page>
+</ons-template>
+
+<ons-popover direction="down up" id="popover" cancelable>
+  <div style="padding: 10px; text-align: center;">
+    <p>
+      This is a popover
+    </p>
+    <p>
+      <ons-button onclick="hidePopover()">Close</ons-button>
+    </p>
+  </div>
+</ons-popover>
+
+<!-- Alert ---------------->
+<ons-popover id="alert-msg" cancelable>
+  <ons-list>
+    <ons-list-item class="list__item--tappable list__item__line-height" modifier="chevron">Numbers</ons-list-item>
+    <ons-list-item class="list__item--tappable list__item__line-height" modifier="chevron">One</ons-list-item>
+    <ons-list-item class="list__item--tappable list__item__line-height" modifier="chevron">Two</ons-list-item>
+  </ons-list>
+</ons-popover>
+<!------------------------->
+
+<ons-list-item id="bbs-list" class="bbs-list bbs-list-seed">
+  <span class="keijiban_id" id="0" hidden></span>
+  <div class="left"><ons-icon class="list__item__thumbnail" icon="ion-clipboard" size="2x"></ons-icon></div>
+  <div class="center"><span class="list__item__title">Cutest kitty</span>
+  <span class="list__item__subtitle">On the Internet</span></div>
+</ons-list-item>
+
+<!-- Location ------------------>
+<ons-dialog id="location-list">
+  <div style="text-align: center; padding: 10px;">
+      <p>Location List</p>
+    <div align="center" id="location-edit">
+    <input onchange="locationEdit()" type="checkbox" name="on-off-flip" data-on-text="編集" data-off-text="編集" id="on-off-flip" data-role="flipswitch" >
+    </div>
+      <ons-list-item tappable>
+        <label for="check-1" class="center">
+          <ons-input id="location1" modifier="underbar" placeholder="" float value="友人"></ons-input>
+        </label>
+        <label class="right">
+          <ons-input type="checkbox" input-id="check-1" hidden></ons-input>
+        </label>
+      </ons-list-item>
+      <ons-list-item tappable>
+        <label for="check-2" class="center">
+          <ons-input id="location1" modifier="underbar" placeholder="" float value="学校"></ons-input>
+        </label>
+        <label class="right">
+          <ons-input type="checkbox" input-id="check-2"></ons-input>
+        </label>
+      </ons-list-item>
+      <ons-list-item tappable>
+        <label for="check-3" class="center">
+          <ons-input id="location1" modifier="underbar" placeholder="" float value="実家"></ons-input>
+        </label>
+        <label class="right">
+          <ons-input type="checkbox" input-id="check-3"></ons-input>
+        </label>
+      </ons-list-item>
+    </ons-list>
+    <ons-button onclick="closeDialog('location-list')">閉じる</ons-button>
+  </div>
+</ons-dialog>
+
+<ons-dialog id="dialog.html" cancelable>
+<ons-list>
+    <ons-list-item modifier="tappable">
+      Foo
+    </ons-list-item>
+    <ons-list-item modifier="tappable">
+      Bar
+    </ons-list-item>
+    <ons-list-item modifier="tappable">
+      Hoge
+    </ons-list-item>
+  </ons-list>
+</ons-dialog>
+
+<ons-dialog id="location-regi">
+  <div style="text-align: center; padding: 30px;">
+    <p>
+      現在位置を登録しますか？
+    </p>
+    <div><ons-input style="width:200px" id="name" modifier="underbar" placeholder="場所名" float></ons-input></div>
+    <ons-button onclick="closeDialog('location-regi')">閉じる</ons-button>
+    <ons-button onclick="locationRegi('location-regi')">登録</ons-button>
+  </div>
+</ons-dialog>
+
+<ons-dialog id="dialog-2.html" cancelable>
+  <div class="alert-dialog-footer">
+    <ons-list-item tappable onclick="getPhoto2 ()" >写真を撮影する</ons-list-item>
+    <ons-list-item tappable onclick="getPhoto ()" >アルバムから選択する</ons-list-item> 
+  </div>
+</ons-dialog>
+
+<ons-dialog id="load-dialog" style="opacity:0.4">
+  <div align="center" >
+    <ons-progress-circular indeterminate></ons-progress-circular>
+  </div>
+</ons-dialog>
+<!-- ゴミ ---------
+<ons-template id="bbs-write.html">
+</ons-template>
+
+<ons-template id="rent-write.html">
+</ons-template>
+
+<ons-template id="bbs-content.html">
+</ons-template>
+
+<ons-template id="rent-content.html">
+</ons-template>
+
+<ons-template id="settings.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button onclick="menuOpen()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">
+        Settings
+      </div>
+    </ons-toolbar>
+  </ons-page>
+</ons-template>
+
+<ons-template id="about.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button onclick="fn.open()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">
+        About
+      </div>
+    </ons-toolbar>
+  </ons-page>
+</ons-template>
+------------
+<!--
+<script>  
+  $(function(){
+    myNavigator.pushPage("page/login/login.html",{ animation : 'lift' });
+  });
+</script>
+-->
+</body>
+</html>

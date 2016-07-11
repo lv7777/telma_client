@@ -1,0 +1,20 @@
+<ons-page> 
+  <div class="container">
+    <div class="card card-container">
+      <p id="profile-name" class="profile-name-card"></p>
+      <form class="form-signin">
+      <!--  <input type="button" onclick="getPhoto ()" value="a"><br>-->
+        <img onclick="showDialog('dialog-2.html')" id="image" src="image/telma.jpg" class="img-responsive profile-img-card" style=" width: 96px;height: 96px;margin: 0 auto 10px;display: block;-moz-border-radius: 50%;-webkit-border-radius: 50%;border-radius: 50%;">
+        <input type="text"     id="input-name" class="form-control" placeholder="フルネーム"requiled autofocus>
+        <input type="email"    id="input-Email" class="form-control" placeholder="メールアドレス" required >
+        <input type="password" id="input-Password" class="form-control" placeholder="パスワード" required>
+        <input type="tel"      id="input-tel" class="form-control" placeholder="電話番号"required>
+      </form><!-- /form -->
+      <button onclick="newlogin()" class="btn btn-lg btn-success btn-block btn-signin " style="margin-top:10px" >アカウントを作る</button>
+      <div style="text-align: center">
+        <font  size="-1">アカウントお持ちの方</font>
+        <ons-button onclick="modoru1()"  modifier="quiet">ログインする</ons-button>
+      </div>
+    </div><!-- /card-container -->
+  </div><!-- /container -->
+</ons-page>

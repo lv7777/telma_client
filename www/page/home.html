@@ -1,0 +1,41 @@
+<ons-page>
+  <ons-toolbar id="toolbar">
+    <style>
+    .page__background{
+      height: 100%;
+      background-repeat: no-repeat;
+      background-image: none;
+    }
+    </style>
+    <div class="left">
+      <ons-toolbar-button onclick="menuOpen()">
+        <ons-icon icon="md-menu"></ons-icon>
+      </ons-toolbar-button>
+    </div>
+    <div class="center">
+      Main
+    </div>
+    <div class="right">
+      <ons-toolbar-button id="refresh-icon">
+        <ons-icon icon="ion-android-sync" onclick="bbsList()"></ons-icon>
+      </ons-toolbar-button>
+      <ons-toolbar-button id="alert-block">
+        <ons-icon icon="ion-android-notifications" onclick="slideOpen('page/alert-page.html')"></ons-icon>
+      </ons-toolbar-button>
+      <!--<ons-toolbar-button id="menu-icon">
+      <div class="dropdown">
+        <ons-icon icon="ion-more" class="dropdown-toggle" type="button" data-toggle="dropdown"></ons-icon>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li><a href="#">HTML</a></li>
+          <li><a href="#"</a></li>
+          <li><a href="#">ログアウト</a></li>
+        </ul>
+      </div>
+      </ons-toolbar-button>-->
+    </div>
+  </ons-toolbar>
+  <ons-tabbar position="top">
+    <ons-tab page="bbs.html" label="近所でおはなし" active="true" persistent></ons-tab>
+    <ons-tab page="rent.html" label="レンタル広場" persistent></ons-tab>
+  </ons-tabbar>
+</ons-page>
