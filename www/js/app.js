@@ -1,11 +1,5 @@
-// This is a JavaScript file
-
 //定数
-//var _domain = "http://exout.net/~kashima_dollars";
 var _domain = "https://it2-sotuken.herokuapp.com"
-//var _domain = "http://192.168.10.100/telma_server";
-//var _domain = "http://suta39.php.xdomain.jp/telma_server";
-//var _domain = "http://192.168.10.102:3000";
 
 var _user_id = "1";
 var _session_id = "g25j1p2ogawik29";
@@ -26,14 +20,40 @@ function openSlide(page) {
   $("#content").load(page);
   document.querySelector('#mySplitter').left.toggle();
 }
-//上開き移動
-function popOpen(page){
-	myNavigator.pushPage(page, { animation : 'lift' } );
-};
+
+function chatOpen(id){
+console.log(id);
+/*
+var sendData = {
+keiji_id:id
+}
+//myNavigator.pushPage("bbs-detail.html", { animation : "slide" , onTransitionEnd:bbsDetailDom(sendData)});/*
+$.ajax({
+type: "GET",
+url: _domain+"/keiji/detail",
+//url:_domain+"/postinfo.php?type=bbs-content",
+data:sendData,
+success: function(msg){
+console.log(JSON.stringify(msg));
+myNavigator.pushPage("bbs-detail.html", { animation : "slide"})
+.then(function(){
+ons.ready(
+detailLoad(msg,id)
+)
+});
+}
+});*/
+myNavigator.pushPage("chat.html", { animation : "lift"})
+.then(function(){
+ons.ready(function(){
+$(".chat-title #userName").html("fffff");
+})
+})
+}
+
 //右ページ移動
 function slideOpen(page){
   //console.log(this.val());
-        console.log("aaaaaa");
         var options = {
   animation: 'slide', // What animation to use
   onTransitionEnd: function() {
@@ -92,7 +112,7 @@ function agreeBtn(id){
       dom.toggleClass("btn-secondary");
       dom.html("チャットへ");
       dom.toggleClass("active");
-      dom.attr("onclick","popOpen('chat.html')");
+      dom.attr("onclick","chatOpen('chat.html')");
       //チャットボタン作成
       /*var chatDom = dom.clone(true);
       listDom.prependTo($("#bbs-lists"));
