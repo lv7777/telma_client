@@ -113,10 +113,6 @@ function agreeBtn(id){
       dom.html("チャットへ");
       dom.toggleClass("active");
       dom.attr("onclick","chatOpen('chat.html')");
-      //チャットボタン作成
-      /*var chatDom = dom.clone(true);
-      listDom.prependTo($("#bbs-lists"));
-      dom.clone()*/
     }else{
       
     }
