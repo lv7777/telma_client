@@ -11,39 +11,63 @@ function modoru2(){
 
 function login() {
   myNavigator.replacePage("splitter.html",{animation:"fade"});
-  
-  //myNavigator.popPage();
-  /*
-  var email = $("#inputEmail").val();
-  var password = $("#inputPassword").val();
-  //alert(email+"/"+password);
-  $.ajax({
-    type: "POST",
-    url: "http://exout.net/~kashima_dollars/postinfo.php",
-    data:
-            "email=" + email +
-            "&password=" + password,
-    success: function (msg) {
-      alert(msg);
-    }
-  });*/
+  console.log("hello")
 }
 function newlogin() {
   var name = $("#input-name").val();
   var email = $("#input-Email").val();
   var password = $("#input-Password").val();
   var tel = $("#input-tel").val();
-  //alert(email+"/"+password);
+   var sendData = {
+    fullname:name,
+    email:email,
+    password:password,
+    tel:tel,
+    image:"image.jpg",
+    google_id:"",
+    facebook_id:"",
+    twitter_id:""
+  };
   $.ajax({
     type: "POST",
-    url: "http://exout.net/~kashima_dollars/postinfo.php",
-    data:
-            "name=" + name +
-            "&email=" + email +
-            "&password=" + password +
-            "&tel=" + tel,
+    url: _domain+"/login",
+    data:sendData,
     success: function (msg) {
-      alert(msg);
+      //alert(msg);
+      console.log(JSON.stringify(msg));
+    }
+  });
+}
+function newlogin_me() {
+
+  var email = $("#inputEmail").val();
+  var password = $("#inputPassword").val();
+   var data = {
+    email:email,
+    password:password
+  };
+
+  $.ajax({
+    type: "POST",
+    url: _domain+"/login",
+    data:data,
+    success: function (msg) {
+      if(msg.status=="ok"){
+        myNavigator.replacePage("splitter.html",{animation:"fade"});
+      }else{
+        console.log("/login is success,but data.status is bug...");
+      }
+    },
+    error:function(xhr,status,error){
+        console.log("error!");
+        console.log(xhr);
+        console.log(status);
+        console.log(error);
+      ons.notification.alert({
+        title:"login error!",
+        message:"login failed. please try agein.",
+        animation:"default"
+      });
     }
   });
 }
