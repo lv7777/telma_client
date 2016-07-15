@@ -54,7 +54,10 @@ function bbsReply(id){
 
 
 //記事リスト
-function bbsList(){/*
+//最初にlist-all,update更新ボタンではupdate
+function bbsList(){
+    
+/*
   var listDom = $(".bbs-list:first").clone(true);//.html("List"+listCnt)
   listDom.attr("onclick","bbsContent("+listCnt+")");
   listDom.find(".keijiban_id").attr('id',listCnt);
@@ -62,31 +65,23 @@ function bbsList(){/*
   listDom.find(".list__item__subtitle").html("content"+listCnt);
   listDom.prependTo($("#bbs-lists"));
   return listCnt++;*/
+  
+  //最新のidを取得する。
+  const leastest_id=0;
+  
   $("#load-dialog").show();
-  console.log("start!");
-  //console.log(_domain+"/keiji?longitude=80&latitude=70");
+  console.log("update");
   var sendData = {
     ido:"300",keido:"300"
   };
   $.ajax({
    type: "POST",
    url:"https://it2-sotuken.herokuapp.com/keiji/list-all",
-   //url:_domain+"/postinfo.php?type=bbs-list",
-   //url:"https://it2-sotuken.herokuapp.com/DBtest",
    data:sendData,
    success: function(msg){
+       allclear()
     console.log("success!");
     console.log(JSON.stringify(msg));
-    //console.log(msg);
-    //console.log(JSON.parse(msg));
-    //console.log(JSON.stringify(msg));
-    //msg = JSON.parse(msg);
-    //var msg = JSON.stringify(msg);
-    //alert(msg);
-    /*
-    var data = msg['data'];
-    //alert(msg[0].title)
-    */
     $.each(msg,function(key,val){
       var listDom = $(".bbs-list-seed:first").clone(true);//.html("List"+listCnt)
       //listDom.attr("hidden","false");
@@ -102,6 +97,49 @@ function bbsList(){/*
     }
  	});
   /******/
+}
+
+
+//記事リスト
+//list-allする。最初の一回で呼び出すだけ。
+function listfirst(){
+    allclear();
+  $("#load-dialog").show();
+  console.log("listfirst");
+  var sendData = {
+    ido:"300",keido:"300"
+  };
+  $.ajax({
+   type: "POST",
+   url:"https://it2-sotuken.herokuapp.com/keiji/list-all",
+   data:sendData,
+   success: function(msg){
+        
+    console.log("success!");
+    console.log(JSON.stringify(msg));
+    $.each(msg,function(key,val){
+      var listDom = $(".bbs-list-seed:first").clone(true);//.html("List"+listCnt)
+      listDom.attr("onclick","bbsDetail("+val.keiji_id+")");
+      listDom.find(".list__item__title").html(val.title);
+      listDom.find(".list__item__subtitle").html(val.content);
+       listDom.prependTo($("#bbs-lists"));
+
+    });
+    },
+    error: function(err){
+      console.log("ajax-error!<br>"+JSON.stringify(err));
+    }
+     });
+  /******/
+}
+
+function allclear(){
+    console.log("delete");
+      var currentDom = $(".bbs-list-seed[onclick]")
+      console.log(currentDom)
+      console.log("deleted!")
+      currentDom.remove()
+      console.log("deleteded!")
 }
 
 //詳細表示
