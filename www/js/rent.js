@@ -18,7 +18,7 @@ function rentContentReply(){
     }
   });
 }
-//
+
 function rentServerAgree(){
   
 }
@@ -26,7 +26,7 @@ function rentServerAgree(){
 //記事投稿
 function rentWrite(){
   var title = $("#rent-title").val();
-	var content = $("#rent-content").val();
+  var content = $("#rent-content").val();
   
   var sendData = {
     session_id:_session_id,

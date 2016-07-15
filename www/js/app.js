@@ -21,34 +21,19 @@ function openSlide(page) {
   document.querySelector('#mySplitter').left.toggle();
 }
 
-function chatOpen(id){
-console.log(id);
-/*
-var sendData = {
-keiji_id:id
-}
-//myNavigator.pushPage("bbs-detail.html", { animation : "slide" , onTransitionEnd:bbsDetailDom(sendData)});/*
-$.ajax({
-type: "GET",
-url: _domain+"/keiji/detail",
-//url:_domain+"/postinfo.php?type=bbs-content",
-data:sendData,
-success: function(msg){
-console.log(JSON.stringify(msg));
-myNavigator.pushPage("bbs-detail.html", { animation : "slide"})
-.then(function(){
-ons.ready(
-detailLoad(msg,id)
-)
-});
-}
-});*/
-myNavigator.pushPage("chat.html", { animation : "lift"})
-.then(function(){
-ons.ready(function(){
-$(".chat-title #userName").html("fffff");
-})
-})
+function popOpen(page){
+    
+    //chatの場合はユーザー名などを取ってくる。
+    if(page == "chat.html"){
+      myNavigator.pushPage("chat.html", { animation : "lift"}).then(function(){
+        ons.ready(function(){
+            //TODO:ajaxで相手のユーザー名等の取得。
+            $(".chat-title #userName").html("hello");
+        })
+      })
+    }else{
+        myNavigator.pushPage(page, { animation : 'lift' } );
+    }
 }
 
 //右ページ移動
@@ -112,7 +97,7 @@ function agreeBtn(id){
       dom.toggleClass("btn-secondary");
       dom.html("チャットへ");
       dom.toggleClass("active");
-      dom.attr("onclick","chatOpen('chat.html')");
+      dom.attr("onclick","popOpen('chat.html')");
     }else{
       
     }
