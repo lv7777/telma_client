@@ -36,15 +36,20 @@
 
     <script>
     //ons.bootstrap()
-    ons.ready(function () {/*
-      $("#myNavigator").on('prepush', function(event) {
-        console.log("aaa");
-        console.log($("#bbs-detail-var").html())
-    });*/
-      $(".btn-signin").html("aaaa");
-  console.log($("#bbs-detail-var").html());
-      console.log("Onsen UI is ready!");
-      
+    ons.ready(function () {
+      $("#myNavigator").on('postchange', function(event) {
+              //全権取得
+              console.log("postchange")
+              listfirst();
+              
+             //console.log("aaa");
+            // console.log($("#bbs-detail-var").html())
+        });
+        $(".btn-signin").html("aaaa");
+        console.log($("#bbs-detail-var").html());
+        console.log("Onsen UI is ready!");
+        
+        
     });
     /*
      window.fn.load = function(page) {
@@ -65,7 +70,7 @@
       <ons-splitter-side id="menu" side="left" collapse swipeable>
         <ons-page>
           <ons-list>
-            <ons-list-item onclick="openSlide('page/home.html')" tappable>
+            <ons-list-item onclick="openSlide('page/home.html');listfirst();" tappable>
               Home
             </ons-list-item>
             <ons-list-item onclick="openSlide('page/bbs/bbs-write.html')" tappable>
