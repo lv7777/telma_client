@@ -9,11 +9,12 @@ function modoru2(){
   myNavigator.pushPage('page/login/pw-remake.html');
 }
 
-function login() {
+function pseudo_login() {
   myNavigator.replacePage("splitter.html",{animation:"fade"});
   console.log("hello")
 }
-function newlogin() {
+function register2() {
+    console.log("hello")
   var name = $("#input-name").val();
   var email = $("#input-Email").val();
   var password = $("#input-Password").val();
@@ -28,23 +29,35 @@ function newlogin() {
     facebook_id:"",
     twitter_id:""
   };
+  console.log(sendData)
   $.ajax({
     type: "POST",
-    url: _domain+"/login",
+    url: _domain+"/register",
     data:sendData,
     success: function (msg) {
       //alert(msg);
       console.log(JSON.stringify(msg));
+        ons.notification.alert({
+          title:"登録成功！",
+          message:"入力されたemailに登録用urlを送信しましたのでご確認ください。"
+      });
+    },
+    error:function(xhr,status,error){
+        console.log("error occurred...")
+        console.log(xhr);
+        console.log(status);
+        console.log(error);
     }
   });
 }
-function newlogin_me() {
+function login() {
 
   var email = $("#inputEmail").val();
   var password = $("#inputPassword").val();
    var data = {
     email:email,
-    password:password
+    password:password,
+    mock:false
   };
 
   $.ajax({
@@ -52,6 +65,7 @@ function newlogin_me() {
     url: _domain+"/login",
     data:data,
     success: function (msg) {
+        console.log(msg)
       if(msg.status=="ok"){
         myNavigator.replacePage("splitter.html",{animation:"fade"});
       }else{

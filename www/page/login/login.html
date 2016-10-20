@@ -12,13 +12,19 @@
         <span id="reauth-email" class="reauth-email"></span>
         <input type="email" id="inputEmail" class="form-control" placeholder="メールアドレス" required autofocus>
         <input type="password" id="inputPassword" class="form-control" placeholder="パスワード" required>
-        <button onclick="newlogin_me()" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">ログイン</button>
+        <button onclick="login()" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">ログイン</button>
       </div><!-- /form -->
       <button onclick="newUserPage()" id="push-button" class="btn btn-lg btn-success btn-block btn-signin">新しくアカウントを作る</button>
-      <div align='center'style="margin-top:25px">
-        <a  style= "text-align : center;"   class="forgot-password" onclick="modoru2()" >
+      <div align='center'style="margin-top:15px">
+        <a  style= "text-align : center;text-decoration: none;   class="forgot-password" onclick="modoru2()" >
           パスワードを忘れた方
         </a>
+        <br />
+        <font  size="-1">連携アカウントお持ちの方</font>
+        <br />
+        <a class="btn btn-social-icon btn-twitter" href="https://it2-sotuken.herokuapp.com/auth/twittertest" ><span class="fa fa-twitter"></span></a>
+        <a class="btn btn-social-icon btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-facebook']);"><span class="fa fa-facebook"></span></a>
+         <a class="btn btn-social-icon btn-google" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-google']);"><span class="ion-social-googleplus"></span></a>
       </div>
     </div>
   </div>

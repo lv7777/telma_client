@@ -6,7 +6,7 @@ function bbsWrite(){
 	var content = $("#bbs-content").val();
 	//var location = getLocation();
 	//alert(location.ido);
-  console.log("start!");
+  console.log("bbsWrite");
   var sendData = {
     title:title,
     content:content,
@@ -17,15 +17,11 @@ function bbsWrite(){
   
 	$.ajax({
    type: "POST",
-   //url: _domain+"postinfo.php",
    url:"https://it2-sotuken.herokuapp.com/keiji/post",
    data:sendData,
    success: function(msg){
-     console.log("Success!");
-     //console.log("aaa");
-     //alert(msg);
+     console.log("bbswriteSuccess!");
       console.log(JSON.stringify(msg));
-    //console.log(msg);
     }
  	});
   myNavigator.popPage();
@@ -103,11 +99,34 @@ function bbsList(){
 //記事リスト
 //list-allする。最初の一回で呼び出すだけ。
 function listfirst(){
+
+  console.log("listfirst");
+  var sendData = {
+    ido:"300",keido:"300",mock:false
+  };
+  $.ajax({
+   type: "GET",
+   url:"https://it2-sotuken.herokuapp.com/se?mock=false",
+   success: function(msg){
+        
+    console.log("success!");
+    console.log(JSON.stringify(msg));
+    },
+    error: function(err){
+      console.log("ajax-error!<br>"+JSON.stringify(err));
+    }
+     });
+  /******/
+}
+
+//記事リスト
+//list-allする。最初の一回で呼び出すだけ。
+function listfirst_old(){
     allclear();
   $("#load-dialog").show();
   console.log("listfirst");
   var sendData = {
-    ido:"300",keido:"300"
+    ido:"300",keido:"300",mock:false
   };
   $.ajax({
    type: "POST",
