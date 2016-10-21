@@ -28,7 +28,6 @@ function register_send() {
     facebook_id:"",
     twitter_id:""
   };
-  console.log(sendData)
   $.ajax({
     type: "POST",
     url: _domain+"/register",
@@ -41,6 +40,12 @@ function register_send() {
       });
     },
     error:function(xhr,status,error){
+        
+        //ons.notificationはアラートテンプレをHTML分離することもできるしjsのみで簡潔することもできる。
+          ons.notification.alert({
+            title:"登録失敗",
+            message: 'もう一度適切な値にしてやり直してみてください・・・'
+          });
         console.log("error occurred...")
         console.log(xhr);
         console.log(status);
