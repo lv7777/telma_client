@@ -13,8 +13,7 @@ function pseudo_login() {
   myNavigator.replacePage("splitter.html",{animation:"fade"});
   console.log("hello")
 }
-function register2() {
-    console.log("hello")
+function register_send() {
   var name = $("#input-name").val();
   var email = $("#input-Email").val();
   var password = $("#input-Password").val();
@@ -35,7 +34,6 @@ function register2() {
     url: _domain+"/register",
     data:sendData,
     success: function (msg) {
-      //alert(msg);
       console.log(JSON.stringify(msg));
         ons.notification.alert({
           title:"登録成功！",
@@ -82,6 +80,7 @@ function login() {
         message:"login failed. please try agein.",
         animation:"default"
       });
+       myNavigator.replacePage("splitter.html",{animation:"fade"});//forTEST
     }
   });
 }
