@@ -38,12 +38,12 @@ function popOpen(page){
 
 //右ページ移動
 function slideOpen(page){
-  //console.log(this.val());
-        var options = {
-  animation: 'slide', // What animation to use
-  onTransitionEnd: function() {
-  alert("aaaa");} // Called when finishing transition animation
-};
+    var options = {
+      animation: 'slide', // What animation to use
+      onTransitionEnd: function() {
+      alert("aaaa");
+      } // Called when finishing transition animation
+    };
 	myNavigator.pushPage(page,options);
 }
 //ポップアップ表示
