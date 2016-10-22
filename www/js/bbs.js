@@ -99,8 +99,6 @@ function bbsList(){
 //記事リスト
 //list-allする。最初の一回で呼び出すだけ。
 function listfirst(){
-
-  console.log("listfirst");
   var sendData = {
     ido:"300",keido:"300",mock:false
   };
@@ -108,9 +106,6 @@ function listfirst(){
    type: "GET",
    url:"https://it2-sotuken.herokuapp.com/se?mock=false",
    success: function(msg){
-        
-    console.log("success!");
-    console.log(JSON.stringify(msg));
     },
     error: function(err){
       console.log("ajax-error!<br>"+JSON.stringify(err));

@@ -21,7 +21,6 @@ $.ajax({
             //listDom.attr("onclick","");
             //listDom.find(".list__item__title").html(item.title);
             //listDom.find(".list__item__subtitle").html(item.subtitle);
-            debugger;
             //TODO:スタイルのclass化
             //alert(item.alert_type_id)
             switch(item.alert_type_id){
@@ -32,7 +31,6 @@ $.ajax({
                     listDom.find(".list__item__title").html(item.title);
                     listDom.find(".list__item__subtitle").html(item.subtitle);
                     listDom.attr("onclick","");
-                    debugger;
                     break; 
                 case "2":
                     // チャット（チャット相手の新規発言
@@ -75,7 +73,7 @@ $.ajax({
                     break;
                 default:
             }
-            listDom.prependTo($("#alert-lists"));
+            listDom.appendTo($("#alert-lists"));
             // item.alert_id
             // item.user_id
             // item.username

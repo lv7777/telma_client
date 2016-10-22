@@ -1,8 +1,5 @@
-
-//var socket = io.connect('http://172.18.93.199:3000');
-//var socket = io.connect('http://172.18.93.146:8080/');
 //var socket = io.connect('http://192.168.179.5:8080/');
-
+console.log("client.js")
 var userId = "user_" + Math.floor((Math.random() * 100) + 1);
 ons.ready(function () {
     $("#userName").text(userId);
