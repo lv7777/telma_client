@@ -14,8 +14,8 @@ jQuery.fn.extend({
 
 socket.on('messageToClient', function (msg) {  
     console.log("get message!!!")
-    //insertMessage(msg.data, "14");
-    fakeMessage(msg.data)
+    //myMessage(msg.data, "14");
+    partnerMessage(msg.data)
 });
 var $messages = $('.messages-content'),
     d, h, m,
@@ -44,14 +44,14 @@ function setDate() {
 }
 
 //自分の発言
-function insertMessage(msg, chatId) {
+function myMessage(msg, chatId) {
     console.log("insert message!!!")
     $('<div class="message message-personal ' + chatId + '">' + msg + '</div>').appendTo($('.messages-content')).addClass('new');
     setDate();
     $('.message-input').val(null);
     updateScrollbar(chatId);
     //setTimeout(function () {
-    //    fakeMessage("kmkmkmkmkm");
+    //    partnerMessage("kmkmkmkmkm");
     //}, 1000 + (Math.random() * 20) * 100);
 }
 
@@ -75,7 +75,7 @@ $(window).on('keydown', function (e) {
         if ($.trim(msg) == '') {
             return false;
         }
-        insertMessage(msg, chatId)
+        myMessage(msg, chatId)
         console.log("message  send!")
         socket.emit('messageToServer', { content: $.trim(msg), chatId: chatId, userId: userId });
         return false;
@@ -108,14 +108,12 @@ socket.on('messageTypingClient', function (data) {
 });
 
 //相手側の発言欄
-function fakeMessage(msg) {
+function partnerMessage(msg) {
 
     $('<div class="message new ' + 3 + '"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + msg + '</div>').appendTo($('.messages-content')).addClass('new');
     setDate();
     //updateScrollbar(chatIdFake);
 }
-
-
 
 function chat_init(p_uid=22){
   $.ajax({
