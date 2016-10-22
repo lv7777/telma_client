@@ -14,10 +14,8 @@ jQuery.fn.extend({
 
 socket.on('messageToClient', function (msg) {  
     console.log("get message!!!")
-    if (msg.userId == userId)
-        insertMessage(msg.content, msg.chatId);
-    else
-        fakeMessage(msg.content);
+    //insertMessage(msg.data, "14");
+    fakeMessage(msg.data)
 });
 var $messages = $('.messages-content'),
     d, h, m,
@@ -45,14 +43,16 @@ function setDate() {
     }
 }
 
+//自分の発言
 function insertMessage(msg, chatId) {
+    console.log("insert message!!!")
     $('<div class="message message-personal ' + chatId + '">' + msg + '</div>').appendTo($('.messages-content')).addClass('new');
     setDate();
     $('.message-input').val(null);
     updateScrollbar(chatId);
-    setTimeout(function () {
-        //fakeMessage();
-    }, 1000 + (Math.random() * 20) * 100);
+    //setTimeout(function () {
+    //    fakeMessage("kmkmkmkmkm");
+    //}, 1000 + (Math.random() * 20) * 100);
 }
 
 
@@ -75,6 +75,7 @@ $(window).on('keydown', function (e) {
         if ($.trim(msg) == '') {
             return false;
         }
+        insertMessage(msg, chatId)
         console.log("message  send!")
         socket.emit('messageToServer', { content: $.trim(msg), chatId: chatId, userId: userId });
         return false;
@@ -106,20 +107,12 @@ socket.on('messageTypingClient', function (data) {
     }
 });
 
-
+//相手側の発言欄
 function fakeMessage(msg) {
-    if ($('.message-input').val() != '') {
-        return false;
-    }
-    var chatIdFake = "chat_" + Math.floor((Math.random() * 500) + 4);
-    $('<div class="message loading new ' + chatIdFake + '"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><span></span></div>').appendTo($('.messages-content'));
-    updateScrollbar(chatIdFake);
-    //updateScrollbar(chatIdFake);
-    $('.message.loading').remove();
 
-    $('<div class="message new ' + chatIdFake + '"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + msg + '</div>').appendTo($('.messages-content')).addClass('new');
+    $('<div class="message new ' + 3 + '"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + msg + '</div>').appendTo($('.messages-content')).addClass('new');
     setDate();
-    updateScrollbar(chatIdFake);
+    //updateScrollbar(chatIdFake);
 }
 
 
