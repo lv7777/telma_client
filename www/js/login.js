@@ -89,16 +89,32 @@ function login() {
     }
   });
 }
-function newpass() {
-  var email = $("#input-Email").val();
+function reset_pass() {
+  var email_data = $("#input-Email").val();
+  var tel_data = $("#input-TEL").val();
+  var send_data={
+      email:email_data,
+      tel:tel_data
+  }
+  //TODO:リファクタ
   //alert(email+"/"+password);
   $.ajax({
     type: "POST",
-    url: "http://exout.net/~kashima_dollars/postinfo.php",
-    data:
-            "email=" + email,
+    url: _domain+"/reset_pass",
+    data:send_data,
     success: function (msg) {
-      alert(msg);
+      ons.notification.alert({
+          title:"メール送信完了",
+          message:"メールを送信しました。メールボックスを覗いてみてください。"
+      })
+    },
+    error: function (xhr,status,error){
+
+        console.log("error occurred...")
+        console.log(xhr);
+        console.log(status);
+        console.log(error);
+    
     }
   });
 }

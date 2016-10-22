@@ -6,8 +6,10 @@
         <h4>パスワードを再発行する</h4>
         <h5>登録時のメールアドレスを入力してください</h5>
         <input type="email"    id="input-Email" class="form-control" placeholder="メールアドレス" required >
-      </form><!-- /form -->
-      <button onclick="newpass()" class="btn btn-lg btn-success btn-block btn-signin " style="margin-top:10px" >メールを送信する</button>
+        <h5>登録時の電話番号を入力してください</h5>
+        <input type="tel"    id="input-TEL" class="form-control" placeholder="電話番号" required >        
+      </form>
+      <button onclick="reset_pass()" class="btn btn-lg btn-success btn-block btn-signin " style="margin-top:10px" >メールを送信する</button>
       <div style="text-align: center">
         <ons-button onclick="modoru1()"  modifier="quiet">ログイン画面に戻る</ons-button>
       </div>
