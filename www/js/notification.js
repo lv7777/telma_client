@@ -16,13 +16,13 @@ $.ajax({
 
         for(var item of msg){
             //クローンしてから
-            console.log(item);            
+            //console.log(item);            
             var listDom = $(".alert-list-seed:first").clone(true);//.html("List"+listCnt)
             //listDom.attr("onclick","");
             //listDom.find(".list__item__title").html(item.title);
             //listDom.find(".list__item__subtitle").html(item.subtitle);
             //TODO:スタイルのclass化
-            //alert(item.alert_type_id)
+            
             switch(item.alert_type_id){
                 case "1":
                     // 掲示板のコメント

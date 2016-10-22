@@ -1,5 +1,4 @@
-//var socket = io.connect('http://192.168.179.5:8080/');
-console.log("client.js")
+var socket = io.connect('https://it2-sotuken.herokuapp.com/');
 var userId = "user_" + Math.floor((Math.random() * 100) + 1);
 ons.ready(function () {
     $("#userName").text(userId);
@@ -12,7 +11,9 @@ jQuery.fn.extend({
         }
     }
 });
+
 socket.on('messageToClient', function (msg) {  
+    console.log("get message!!!")
     if (msg.userId == userId)
         insertMessage(msg.content, msg.chatId);
     else
@@ -62,6 +63,7 @@ $('.message-submit').live('click', function () {
         return false;
     }
     $('.message-input').focus()
+    console.log("message  send!")
     socket.emit('messageToServer', { content: $.trim(msg), chatId: chatId, userId: userId });
 });
 
@@ -73,6 +75,7 @@ $(window).on('keydown', function (e) {
         if ($.trim(msg) == '') {
             return false;
         }
+        console.log("message  send!")
         socket.emit('messageToServer', { content: $.trim(msg), chatId: chatId, userId: userId });
         return false;
     }

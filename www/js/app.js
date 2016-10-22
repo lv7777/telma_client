@@ -28,7 +28,8 @@ function popOpen(page){
       myNavigator.pushPage("chat.html", { animation : "lift"}).then(function(){
         ons.ready(function(){
             //TODO:ajaxで相手のユーザー名等の取得。
-            $(".chat-title #userName").html("hello");
+            var partner=chat_init(22);
+            //$(".chat-title #userName").html("hello");
         })
       })
     }else{
@@ -44,7 +45,17 @@ function slideOpen(page){
       alert("aaaa");
       } // Called when finishing transition animation
     };
-	myNavigator.pushPage(page,options);
+	//ここまでおｋ
+    if(page == "page/alert-page.html"){
+        myNavigator.pushPage("page/alert-page.html",options).then(function(){
+            notification_list(3)
+        });
+        
+    }else{
+        myNavigator.pushPage(page,options);
+    }
+    
+    
 }
 //ポップアップ表示
 function openDialog(id){
