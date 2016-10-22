@@ -14,7 +14,6 @@ jQuery.fn.extend({
 
 socket.on('messageToClient', function (msg) {  
     console.log("get message!!!")
-    //myMessage(msg.data, "14");
     partnerMessage(msg.data)
 });
 var $messages = $('.messages-content'),
@@ -55,7 +54,6 @@ function myMessage(msg, chatId) {
     //}, 1000 + (Math.random() * 20) * 100);
 }
 
-
 $('.message-submit').live('click', function () {
     var chatId = "chat_" + Math.floor((Math.random() * 100) + 1);
     msg = $('.message-input').val();
@@ -63,6 +61,7 @@ $('.message-submit').live('click', function () {
         return false;
     }
     $('.message-input').focus()
+    myMessage(msg, chatId)
     console.log("message  send!")
     socket.emit('messageToServer', { content: $.trim(msg), chatId: chatId, userId: userId });
 });
