@@ -85,7 +85,6 @@ function login() {
         message:"login failed. please try agein.",
         animation:"default"
       });
-       myNavigator.replacePage("splitter.html",{animation:"fade"});//forTEST
     }
   });
 }
