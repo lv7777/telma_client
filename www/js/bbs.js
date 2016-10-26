@@ -95,28 +95,9 @@ function bbsList(){
   /******/
 }
 
-
 //記事リスト
 //list-allする。最初の一回で呼び出すだけ。
 function listfirst(){
-  var sendData = {
-    ido:"300",keido:"300",mock:false
-  };
-  $.ajax({
-   type: "GET",
-   url:"https://it2-sotuken.herokuapp.com/se?mock=false",
-   success: function(msg){
-    },
-    error: function(err){
-      console.log("ajax-error!<br>"+JSON.stringify(err));
-    }
-     });
-  /******/
-}
-
-//記事リスト
-//list-allする。最初の一回で呼び出すだけ。
-function listfirst_old(){
     allclear();
   $("#load-dialog").show();
   console.log("listfirst");
