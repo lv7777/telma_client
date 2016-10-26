@@ -41,11 +41,15 @@ function rentWrite(){
    url:"https://it2-sotuken.herokuapp.com/kashikari/post",
    data:sendData,
    success: function(msg){
-     ons.notification.alert({
+      ons.notification.confirm({
          title:"投稿成功！",
-         message:"投稿に成功しました！掲示板に戻ります。"
-     })
-     myNavigator.popPage();
+         message:"投稿に成功しました！掲示板に戻ります。",
+         callback:function(idx){
+             if(idx){
+                myNavigator.popPage();
+             }
+         }
+      })
  	 }
  	});
 }
