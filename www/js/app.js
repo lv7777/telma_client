@@ -7,6 +7,14 @@ var region_id = ["1","2","3"];
 var listCnt = 1;
 var locationInfo;
 
+$.ajaxSetup(
+ {
+  xhrFields:{
+   withCredentials: true
+  }
+ }
+);
+
 /* 初期化 *****************/
 $(function(){
   $('#refresh').on('changestate',function(){
@@ -22,14 +30,11 @@ function openSlide(page) {
 }
 
 function popOpen(page){
-    
     //chatの場合はユーザー名などを取ってくる。
     if(page == "chat.html"){
       myNavigator.pushPage("chat.html", { animation : "lift"}).then(function(){
         ons.ready(function(){
-            //TODO:ajaxで相手のユーザー名等の取得。
-            var partner=chat_init(22);
-            //$(".chat-title #userName").html("hello");
+            var partner=chat_init(1);
         })
       })
     }else{
@@ -45,24 +50,23 @@ function slideOpen(page){
       alert("aaaa");
       } // Called when finishing transition animation
     };
-	//ここまでおｋ
     if(page == "page/alert-page.html"){
+        //alert("okdesuka?")
         myNavigator.pushPage("page/alert-page.html",options).then(function(){
             notification_list(3)
         });
         
     }else{
+        //alert("okdesuka?")
         myNavigator.pushPage(page,options);
     }
     
     
 }
-//ポップアップ表示
 function openDialog(id){
   document.getElementById(id).show();
   //document.getElementById(id).show();
 }
-//ポップアップ閉
 function closeDialog(id){
   document.getElementById(id).hide();
 }
