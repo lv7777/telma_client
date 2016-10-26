@@ -29,25 +29,55 @@ function rentWrite(){
   var content = $("#rent-content").val();
   
   var sendData = {
-    session_id:_session_id,
-    user_id:_user_id,
     title:title,
     content:content,
     ido:"100",
     keido:"200",
-    limit:"3",
     image:"bbs.img"
   };
   
 	$.ajax({
    type: "POST",
-   url:domain+"/postinfo.php",
+   url:"https://it2-sotuken.herokuapp.com/kashikari/post",
    data:sendData,
    success: function(msg){
-     alert(msg);
+     ons.notification.alert({
+         title:"投稿成功！",
+         message:"投稿に成功しました！掲示板に戻ります。"
+     })
+     myNavigator.popPage();
  	 }
  	});
 }
 
 
+
+
+//記事投稿
+function bbsWrite(){
+  var title = $("#bbs-title").val();
+    var content = $("#bbs-content").val();
+	//var location = getLocation();
+	//alert(location.ido);
+  console.log("bbsWrite");
+  var sendData = {
+    title:title,
+    content:content,
+    ido:"300",
+    keido:"300",
+    image:"hanabi1.jpg"
+  };
+  
+	$.ajax({
+   type: "POST",
+   url:"https://it2-sotuken.herokuapp.com/keiji/post",
+   data:sendData,
+   success: function(msg){
+     console.log("bbswriteSuccess!");
+      console.log(JSON.stringify(msg));
+    }
+ 	});
+  myNavigator.popPage();
+  bbsList();
+}
 /*******************/
