@@ -25,7 +25,7 @@
     <script src="js/notification.js"></script>
     <script src="lib/chat.js"></script>
 
- <script type="text/javascript" src="lib/client.js"></script>
+<script type="text/javascript" src="lib/client.js"></script>
  
 
     <link rel="stylesheet" href="components/loader.css">
@@ -69,19 +69,25 @@
   <ons-navigator id="myNavigator" page="page/login/login.html">
   </ons-navigator>
   
-  <ons-template id="splitter.html">
+    <ons-template id="splitter.html">
     <ons-splitter id="mySplitter">
       <ons-splitter-side id="menu" side="left" collapse swipeable>
         <ons-page>
           <ons-list>
-            <ons-list-item onclick="openSlide('page/home.html');listfirst();" tappable>
-              Home
+            <ons-list-item onclick="openSlide('page/home.html')" tappable><!--listfirst();-->
+            
             </ons-list-item>
-            <ons-list-item onclick="openSlide('page/bbs/bbs-write.html')" tappable>
-              Settings
+            <ons-list-item onclick="openSlide('page/home.html')" tappable>
+              ホーム画面
             </ons-list-item>
-            <ons-list-item onclick="openSlide('chat.html')" tappable>
-              Chat
+            <ons-list-item onclick="openSlide('useradit.html')" tappable>
+              アカウント情報編集
+            </ons-list-item>
+            <ons-list-item onclick="myNavigator.pushPage('chatselect.html', { animation : 'slide' } )" tappable>
+              チャット
+            </ons-list-item>
+            <ons-list-item onclick="openSlide('page/login/login.html')" tappable>
+              <ons-icon icon="ion-power"><span style="margin-left:10px">ログアウト</span>
             </ons-list-item>
           </ons-list>
         </ons-page>
@@ -89,6 +95,7 @@
       <ons-splitter-content id="content" page="page/home.html"></ons-splitter-content>
     </ons-splitter>
   </ons-template>
+  
   
   <ons-template id="rent.html">
     <ons-page>
