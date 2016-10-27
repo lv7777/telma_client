@@ -70,7 +70,13 @@ function login() {
     success: function (msg) {
         console.log(msg)
       if(msg.status=="ok"){
-        myNavigator.replacePage("splitter.html",{animation:"fade"});
+        myNavigator.replacePage("splitter.html",{animation:"fade"}).then(function(){
+            ons.ready(function(){
+                $("#testes").html(msg.data[0].fullname)
+            })
+        })
+        
+        
       }else{
         console.log("/login is success,but data.status is bug...");
       }
