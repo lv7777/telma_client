@@ -70,17 +70,20 @@ function listfirst(){
    url:"https://it2-sotuken.herokuapp.com/kashikari/list-all",
    data:sendData,
    success: function(msg){
-        
+
+    
+    $(".rent-list:visible").remove()
+    $.each(msg,function(key,val){
+    var listDom = $(".rent-list-seed:hidden").clone(true);
+    listDom.attr("onclick","rentDetail("+val.kashikari_id+")");
+    listDom.find(".list__item__title").html(val.title);
+    listDom.find(".date").html(formatDate(new Date(val.time)));
+    listDom.fadeIn().css("display","");
+    listDom.prependTo($("#rent-lists"));
+     });
+
     console.log("success!");
     console.log(JSON.stringify(msg));
-//     $.each(msg,function(key,val){
-//       var listDom = $(".bbs-list-seed:first").clone(true);//.html("List"+listCnt)
-//       listDom.attr("onclick","bbsDetail("+val.keiji_id+")");
-//       listDom.find(".list__item__title").html(val.title);
-//       listDom.find(".list__item__subtitle").html(val.content);
-//        listDom.prependTo($("#bbs-lists"));
-// 
-//     });
     },
     error: function(err){
       console.log("ajax-error!<br>"+JSON.stringify(err));
@@ -88,3 +91,23 @@ function listfirst(){
      });
   /******/
 }
+
+	
+function formatDate(date, format) {						
+if (!format) format = 'YYYY年MM月DD日 hh時mm分';						
+format = format.replace(/YYYY/g, date.getFullYear());						
+format = format.replace(/MM/g, ('0' + (date.getMonth() + 1)).slice(-2));						
+format = format.replace(/DD/g, ('0' + date.getDate()).slice(-2));						
+format = format.replace(/hh/g, ('0' + date.getHours()).slice(-2));						
+format = format.replace(/mm/g, ('0' + date.getMinutes()).slice(-2));						
+format = format.replace(/ss/g, ('0' + date.getSeconds()).slice(-2));						
+if (format.match(/S/g)) {						
+var milliSeconds = ('00' + date.getMilliseconds()).slice(-3);						
+var length = format.match(/S/g).length;						
+for (var i = 0; i < length; i++) format = format.replace(/S/, milliSeconds.substring(i, i + 1));						
+}						
+return format;						
+};						
+						
+
+
