@@ -1,5 +1,55 @@
 /*Rental**************/
 
+
+
+//詳細表示
+function rentDetail(id){
+  myNavigator.pushPage("page/rent/rent-detail.html", { animation : "slide"})
+  /*console.log(id);
+  var sendData = {
+    kashikari_id:id
+  }
+  $.ajax({
+    type: "GET",
+    url: _domain+"/kashikari/detail",
+    //url:_domain+"/postinfo.php?type=rent-content",
+    data:sendData,
+    success: function(msg){
+      console.log(JSON.stringify(msg));
+      myNavigator.pushPage("rent-detail.html", { animation : "slide"})
+      .then(function(){
+        ons.ready(function(){
+          //画像読み込み
+          //var detailImg = new Image();
+          //detailImage.onload=function() {
+            //ロード完了で画像を表示
+          //  $("#image-box").children("img").attr({'src':url});
+          //}
+          //detailImage.src = url;
+          $("#rent-detail-var").html(msg.title);
+          $("#rent-detail-title").html(msg.title);
+          $("#rent-detail-content").html(msg.content);
+          switch(reply_flg){
+            case 2:
+              $("#rent-reply").html("申請中");
+              break;
+            case 3:
+              $("#rent-reply").html("チャットへ");
+              break;
+            default:
+              $("#rent-reply").attr("onclick","rentReply("+id+")");
+              break;
+          }
+        })
+      });
+    },
+    error: function(err){
+      console.log("ajax-error!<br>"+JSON.stringify(err));
+    }
+  });*/
+}
+
+
 //詳細表示
 function rentContent(id){
   console.log(id);
